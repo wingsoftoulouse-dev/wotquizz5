@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz d'Entraînement - Wings Of Toulouse (Quiz 5)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #04143B; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; line-height: 1.6; }
+        .event-info { background: linear-gradient(135deg, #04143B 0%, #0a2865 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center; }
+        .event-info h2 { font-size: 22px; margin-bottom: 10px; }
+        .event-info p { font-size: 16px; line-height: 1.5; }
+        .question { margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-radius: 4px; }
+        .question-title { color: #04143B; font-weight: bold; margin-bottom: 10px; }
+        .option { margin: 8px 0; }
+        .option input[type="radio"] { margin-right: 8px; }
+        .submit-btn { width: 100%; padding: 15px; background-color: #04143B; color: white; border: none; border-radius: 4px; font-size: 18px; cursor: pointer; font-weight: bold; }
+        .submit-btn:hover { background-color: #06194d; }
+        .result { display: none; padding: 20px; }
+        .result h2 { color: #04143B; text-align: center; margin-bottom: 20px; }
+        .score { font-size: 24px; color: #04143B; text-align: center; margin: 20px 0; font-weight: bold; }
+        .result-message { background: #e8f4ff; padding: 20px; border-radius: 8px; margin: 20px 0; color: #04143B; text-align: center; line-height: 1.6; }
+        .tombola-section { margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #04143B 0%, #0a2865 100%); border-radius: 8px; text-align: center; color: white; }
+        .tombola-btn { display: inline-block; margin-top: 10px; padding: 12px 30px; background-color: white; color: #04143B; text-decoration: none; border-radius: 4px; font-weight: bold; transition: transform 0.2s; }
+        .tombola-btn:hover { transform: scale(1.05); }
+        .correction { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px; }
+        .correction-item { padding: 10px; margin: 8px 0; border-left: 4px solid #04143B; background: white; }
+        .correction-item.correct { border-left-color: #28a745; background: #f0fff4; }
+        .correction-item.incorrect { border-left-color: #dc3545; background: #fff5f5; }
+        .error { color: red; margin-top: 10px; text-align: center; display: none; }
+
+        @keyframes blink {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.07); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .blink {
+            animation: blink 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="quiz-section">
+        <h1>🛩️ Quiz d'Entraînement – Quiz n°5</h1>
+        <p class="subtitle">Wings Of Toulouse</p>
+
+        <div class="event-info">
+            <h2>🥞 Crêpes, Cookies, Pancakes, Gâteaux & Quiz !</h2>
+            <p><strong>Mercredi 3 décembre à La Bulle</strong><br>
+            🎁 Participe à notre quiz en direct pour gagner des gourmandises gratuites !</p>
+        </div>
+
+        <p style="text-align: center; margin-bottom: 30px; color: #666; font-style: italic;">
+            Voici 10 nouvelles questions de culture aéronautique pour t'entraîner !
+        </p>
+
+        <form id="quiz-form">
+
+            <!-- Q1 -->
+            <div class="question">
+                <div class="question-title">1. Quel phénomène explique la portance selon la différence de pression au-dessus et au-dessous de l'aile ?</div>
+                <div class="option"><input type="radio" name="q1" value="a"> L'effet Bernoulli + troisième loi de Newton</div>
+                <div class="option"><input type="radio" name="q1" value="b"> L'effet Venturi seul</div>
+                <div class="option"><input type="radio" name="q1" value="c"> L'effet Magnus</div>
+                <div class="option"><input type="radio" name="q1" value="d"> La force centrifuge</div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question">
+                <div class="question-title">2. Quel est le nom de la vitesse minimale permettant le contrôle de l'avion en cas de panne moteur au décollage (bimoteur) ?</div>
+                <div class="option"><input type="radio" name="q2" value="a"> Vs1</div>
+                <div class="option"><input type="radio" name="q2" value="b"> Vmc</div>
+                <div class="option"><input type="radio" name="q2" value="c"> Vne</div>
+                <div class="option"><input type="radio" name="q2" value="d"> Vfe</div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question">
+                <div class="question-title">3. Quel nuage est le plus dangereux pour l'aviation ?</div>
+                <div class="option"><input type="radio" name="q3" value="a"> Cirrus</div>
+                <div class="option"><input type="radio" name="q3" value="b"> Stratus</div>
+                <div class="option"><input type="radio" name="q3" value="c"> Cumulonimbus</div>
+                <div class="option"><input type="radio" name="q3" value="d"> Cumulus</div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question">
+                <div class="question-title">4. Quel est l'effet d'une hélice en rotation sur le comportement de l'avion ?</div>
+                <div class="option"><input type="radio" name="q4" value="a"> Aucun effet</div>
+                <div class="option"><input type="radio" name="q4" value="b"> L'effet gyroscopique / couple moteur</div>
+                <div class="option"><input type="radio" name="q4" value="c"> Augmentation de la portance uniquement</div>
+                <div class="option"><input type="radio" name="q4" value="d"> Diminution de la traînée</div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question">
+                <div class="question-title">5. Pourquoi les avions pressurisés ont-ils une altitude cabine autour de 2400 m ?</div>
+                <div class="option"><input type="radio" name="q5" value="a"> Pour économiser du carburant</div>
+                <div class="option"><input type="radio" name="q5" value="b"> Pour limiter la différence de pression avec l'extérieur</div>
+                <div class="option"><input type="radio" name="q5" value="c"> Pour améliorer la visibilité</div>
+                <div class="option"><input type="radio" name="q5" value="d"> Pour réduire le bruit</div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question">
+                <div class="question-title">6. Quel est le principal danger du givrage cellule ?</div>
+                <div class="option"><input type="radio" name="q6" value="a"> Augmentation de la vitesse</div>
+                <div class="option"><input type="radio" name="q6" value="b"> Perte de portance et augmentation de la traînée</div>
+                <div class="option"><input type="radio" name="q6" value="c"> Diminution de la consommation</div>
+                <div class="option"><input type="radio" name="q6" value="d"> Meilleure stabilité</div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question">
+                <div class="question-title">7. Quel phénomène météorologique peut provoquer un cisaillement dangereux à l'atterrissage ?</div>
+                <div class="option"><input type="radio" name="q7" value="a"> Le brouillard</div>
+                <div class="option"><input type="radio" name="q7" value="b"> Le windshear</div>
+                <div class="option"><input type="radio" name="q7" value="c"> La neige</div>
+                <div class="option"><input type="radio" name="q7" value="d"> La pluie fine</div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question">
+                <div class="question-title">8. Comment est appelée la vitesse où portance = poids et traînée = traction ?</div>
+                <div class="option"><input type="radio" name="q8" value="a"> La vitesse de décrochage</div>
+                <div class="option"><input type="radio" name="q8" value="b"> La vitesse de finesse max</div>
+                <div class="option"><input type="radio" name="q8" value="c"> La vitesse maximale</div>
+                <div class="option"><input type="radio" name="q8" value="d"> La vitesse de croisière</div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question">
+                <div class="question-title">9. Quel instrument fonctionne grâce au gyroscope à trois axes ?</div>
+                <div class="option"><input type="radio" name="q9" value="a"> L'altimètre</div>
+                <div class="option"><input type="radio" name="q9" value="b"> Le directeur de vol / horizon artificiel</div>
+                <div class="option"><input type="radio" name="q9" value="c"> Le GPS</div>
+                <div class="option"><input type="radio" name="q9" value="d"> L'anémomètre</div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question">
+                <div class="question-title">10. Quelle est la conséquence d'un centrage trop arrière ?</div>
+                <div class="option"><input type="radio" name="q10" value="a"> Avion instable, risque de perte de contrôle en cabré</div>
+                <div class="option"><input type="radio" name="q10" value="b"> Avion plus stable</div>
+                <div class="option"><input type="radio" name="q10" value="c"> Consommation réduite</div>
+                <div class="option"><input type="radio" name="q10" value="d"> Aucun effet</div>
+            </div>
+
+            <div class="error" id="form-error">⚠️ Veuillez répondre à toutes les questions</div>
+            <button type="submit" class="submit-btn">Voir mon résultat</button>
+        </form>
+    </div>
+
+    <!-- SECTION RESULTATS -->
+    <div id="result-section" class="result">
+        <h2>📊 Ton résultat</h2>
+        <div class="score">Score : <span id="score-display"></span>/10</div>
+
+        <div class="result-message" id="result-message"></div>
+
+        <div class="tombola-section">
+            <h3>🎫 Participe à notre tombola !</h3>
+            <p>Tente ta chance pour gagner un vol en avion !</p>
+            
+            <a href="https://tally.so/r/MeKJa0" target="_blank" class="tombola-btn blink">
+                🎁 Je veux gagner 
+            </a>
+        </div>
+
+        <div class="correction">
+            <h3>✅ Correction des réponses</h3>
+            <div id="correction-list"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const correctAnswers = {
+        q1: 'a',
+        q2: 'b',
+        q3: 'c',
+        q4: 'b',
+        q5: 'b',
+        q6: 'b',
+        q7: 'b',
+        q8: 'b',
+        q9: 'b',
+        q10:'a'
+    };
+
+    const questions = [
+        { text: "Quel phénomène explique la portance selon la différence de pression au-dessus et au-dessous de l'aile ?", correct: "L'effet Bernoulli + troisième loi de Newton" },
+        { text: "Quel est le nom de la vitesse minimale permettant le contrôle de l'avion en cas de panne moteur au décollage (bimoteur) ?", correct: "Vmc" },
+        { text: "Quel nuage est le plus dangereux pour l'aviation ?", correct: "Cumulonimbus" },
+        { text: "Quel est l'effet d'une hélice en rotation sur le comportement de l'avion ?", correct: "L'effet gyroscopique / couple moteur" },
+        { text: "Pourquoi les avions pressurisés ont-ils une altitude cabine autour de 2400 m ?", correct: "Pour limiter la différence de pression avec l'extérieur" },
+        { text: "Quel est le principal danger du givrage cellule ?", correct: "Perte de portance et augmentation de la traînée" },
+        { text: "Quel phénomène météorologique peut provoquer un cisaillement dangereux à l'atterrissage ?", correct: "Le windshear" },
+        { text: "Comment est appelée la vitesse où portance = poids et traînée = traction ?", correct: "La vitesse de finesse max" },
+        { text: "Quel instrument fonctionne grâce au gyroscope à trois axes ?", correct: "Le directeur de vol / horizon artificiel" },
+        { text: "Quelle est la conséquence d'un centrage trop arrière ?", correct: "Avion instable, risque de perte de contrôle en cabré" }
+    ];
+
+    const resultMessages = {
+        perfect: "🏆 <strong>PARFAIT !</strong><br>Tu es un vrai expert en aviation !",
+        excellent: "🌟 <strong>EXCELLENT !</strong><br>Encore un petit effort pour atteindre la perfection !",
+        good: "👍 <strong>BIEN JOUÉ !</strong><br>Tu progresses très bien !",
+        candobetter: "💪 <strong>CONTINUE !</strong><br>Avec un peu d'entraînement tu vas t'améliorer !"
+    };
+
+    document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formError = document.getElementById('form-error');
+        formError.style.display = 'none';
+
+        let allAnswered = true;
+        for (let i = 1; i <= 10; i++) {
+            if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+                allAnswered = false;
+                break;
+            }
+        }
+        if (!allAnswered) { formError.style.display = 'block'; return; }
+
+        let score = 0;
+        let userAnswers = {};
+        for (let i = 1; i <= 10; i++) {
+            const answer = document.querySelector(`input[name="q${i}"]:checked`).value;
+            userAnswers[`q${i}`] = answer;
+            if (answer === correctAnswers[`q${i}`]) score++;
+        }
+
+        document.getElementById('score-display').textContent = score;
+
+        let message;
+        if (score === 10) message = resultMessages.perfect;
+        else if (score >= 8) message = resultMessages.excellent;
+        else if (score >= 5) message = resultMessages.good;
+        else message = resultMessages.candobetter;
+
+        document.getElementById('result-message').innerHTML = message;
+
+        let correctionHTML = '';
+        for (let i = 1; i <= 10; i++) {
+            const isCorrect = userAnswers[`q${i}`] === correctAnswers[`q${i}`];
+            const cssClass = isCorrect ? 'correct' : 'incorrect';
+            const icon = isCorrect ? '✅' : '❌';
+            correctionHTML += `
+                <div class="correction-item ${cssClass}">
+                    ${icon} <strong>Question ${i} :</strong> ${questions[i-1].text}<br>
+                    <strong>Bonne réponse :</strong> ${questions[i-1].correct}
+                </div>
+            `;
+        }
+        document.getElementById('correction-list').innerHTML = correctionHTML;
+
+        document.getElementById('quiz-section').style.display = 'none';
+        document.getElementById('result-section').style.display = 'block';
+        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+    });
+</script>
+
+</body>
+</html>
